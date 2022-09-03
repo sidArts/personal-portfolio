@@ -1,12 +1,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontend-node-port
+  name: frontend-service
+  labels:
+    component: frontend
 spec:
-  type: NodePort
-  ports:
-    - port: 3050
-      targetPort: 8000
-      nodePort: 31515
+  type: LoadBalancer
   selector:
     component: frontend
+  ports:
+    - port: 8000
+      targetPort: 8000
+  
+  
